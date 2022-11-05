@@ -131,7 +131,7 @@ function checkDataSignUp(){
 
 // check userName, Pass.
 function navigation(){
-    window.location = "http://127.0.0.1:5500/Page/index.html";
+    window.location = "http://127.0.0.1:5500/index.html";
 }
 function checkUserLogin(){
     var mark = 0;

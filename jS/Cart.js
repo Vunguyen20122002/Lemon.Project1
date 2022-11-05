@@ -443,6 +443,23 @@ function saveLocal(){
     const parentEs = document.querySelectorAll(".InterfaceCart table tr");
     var nameProduct, imageProduct, priceProduct, amountProduct;
     listProductCart = [];
+    var listSaved = JSON.parse(localStorage.getItem("InformUser"));
+    listSaved.forEach(e => {
+        console.log(e.nameuser, nameUser, e.passuser, passUser)
+        if(e.nameuser != null)
+        if(e.nameuser != nameUser || e.passuser != passUser){
+            console.log("Ok")
+            listProductCart.push({
+                nameuser: e.nameuser,
+                passuser: e.passuser,
+                nameproduct:  e.nameproduct,
+                priceproduct: e.priceproduct,
+                imageproduct: e.imageproduct,
+                amountproduct: e.amountproduct
+            })
+            console.log(listProductCart);
+        }
+    })
     parentEs.forEach(parentE => {
         nameProduct = parentE.querySelector(".name").innerText;
         priceProduct = parentE.querySelector(".price").innerText;
