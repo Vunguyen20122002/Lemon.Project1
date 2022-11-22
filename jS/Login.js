@@ -1,5 +1,5 @@
 var regExp = /[a-zA-Z]/g;
-var regEm = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+var regEm = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
 function errorWarning(lable, input){
     document.getElementById(lable).style.color = 'red'
@@ -79,28 +79,35 @@ btnBackLoginForm.addEventListener("click", ()=>{
 var EmailSign = document.getElementById("inputEmail");
 var NameSign = document.getElementById("inputNameS");
 var PassSign = document.getElementById("inputPassS");
-var list = []
-var currentUser
+var list = [];
+var currentUser;
 function addElement(Email, Name, Pass){
     list.push({
         email: Email,
         name: Name,
-        pass: Pass
-    })
+        pass: Pass,
+    });
 }
-
+// var listAccAdmin = [{
+//     email:'admin@gmail.com',
+//     name: 'admin000',
+//     pass: '00000000'
+// }];
+// localStorage.setItem("ListUser", JSON.stringify(listAccAdmin));
 // Save localStorage
 function saveData(){
     var listSt = JSON.parse(localStorage.getItem("ListUser"));
     list = [];
     if(listSt != null){
         for(var i = 0; i < listSt.length; i++){
-            list.push(listSt[i])
+            list.push(listSt[i]);
         }
     }
+    console.log("List trong save Data"+ list);
     localStorage.removeItem("ListUser");
     addElement(EmailSign.value, NameSign.value, PassSign.value);
     localStorage.setItem("ListUser", JSON.stringify(list));
+
 }
 
 
@@ -131,7 +138,9 @@ function checkDataSignUp(){
 
 // check userName, Pass.
 function navigation(){
+    // if()
     window.location = "http://127.0.0.1:5500/index.html";
+    window.location = "http://127.0.0.1:5500/admin.html";
 }
 function checkUserLogin(){
     var mark = 0;
@@ -162,4 +171,6 @@ function checkUserLogin(){
     if(PassLog == ''){
         errorWarning("lablePass", "inputPass")
     }
+
 }
+

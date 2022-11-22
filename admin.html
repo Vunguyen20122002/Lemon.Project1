@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/styleAdmin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>Page Admin</title>
+</head>
+<body style="background-image: url(image/slide1.webp);">
+    <nav>
+        <div class="menu-form">
+            <div class="logo-name">
+                <div class="logo-image">
+                    <a href="http://127.0.0.1:5500/index.html"><img src="image/logo.png" alt=""></a>
+                </div>
+            </div>
+            <div class="menu-admin">
+                <button id="btn1" class="btn" onclick="ClickUserInfo()">
+                    <ti class="ti-stats-up"></ti>Statistical</button>
+                <button id="btn2" class="btn" onclick="ClickAccountUser()">
+                    <ti class="ti-id-badge"></ti>Account Management</button>
+                <button id="btn3" class="btn" onclick="ClickOrder()">
+                    <ti class="ti-truck"></ti>Quản lý đơn hàng</button>
+                <button id="btn4" class="btn" onclick="ClickProduct()">
+                    <ti class="ti-shopping-cart"></ti>Product Management</button>
+            </div>
+        </div>
+    </nav>
+            <!-- ----------------------- Thống kê -----------------------  -->
+        <div id="content" class="page-content">
+            <h2>Statistical</h2>
+            <div class="thongke">
+                <div class="Amout">
+                    <span>Amount</span>
+                    <label id="amout" for=""></label>
+                </div>
+                <div class="Turnover">
+                    <span>Turnover</span>
+                    <label id="turnover" for=""></label>
+                </div>
+            </div>
+        </div>
+        <!-- ----------------------- Quản lý tài khoản ----------------------- -->
+        <div id="account-management" class="account-management">
+            <h2>Account Management</h2>
+            <table class="table-account-management" id="table-account-management">
+                <tr class="acc-management">
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                </tr>
+            </table>
+        </div>
+        <!-- ----------------------- Quan ly san pham ----------------------- -->
+    <div id="product-management" class="product-management">
+        <div class="addpro">
+            <button onclick="ClickEdit(),change_btn_addnew(),cleartoAdd()">Add</button>
+            <!-- <div class="findproduct">
+                <input type="text" name="" id="inputfind">
+                <span>Search</span>
+            </div> -->
+        </div>
+        <table id="tabale-product-management" class="table-product-management">
+            <tr class="pro-management">
+                <th>ID</th>
+                <th class="imglists">Image</th>
+                <th>Product Type</th>
+                <th>Prince</th>
+                <th>Type</th>
+                <th>Action</th>
+            </tr>
+        </table>
+    </div>
+    <div  id="editmenu" class="editmenu">
+        <i id="ticlose" class="ti-close" onclick="show_product_management(), hide_add_product()"></i>
+        <input type="file" name="" id="img_input" accept="image/jpeg, image/webp, image/jpg, image/png" onchange="chooseFile(this)">
+        <div class="loadimage" id="loadimage">
+            <img src="" id="imgshow" class="imgshow"></td>
+        </div>
+        <div class="editdata">
+            <div class="selectType">
+                <select name="chooseType" id="chooseType">
+                    <option id="op1" value="Cake">Cake</option>
+                    <option id="op2" value="Candy">Candy</option>
+                </select>
+            </div>
+            <div class="addData">
+                <span>Tên sản phẩm
+                </span>/
+                <input type="text" name="addProduct" id="addProduct">
+            </div>
+            <div class="addData">
+                <span>Price
+                </span>
+                <input type="number" name="dataPrice" id="dataPrice">
+            </div>
+            <div class="addData">
+                <input type="hidden"  id="index">
+            </div>
+            <div class="editsubmit">
+                <button id="btnSubmitAddNew" class="btnSubmit" type="submit" onclick="ClickAddNew()">Add New</button>
+                <button id="btnSubmitUpdate" class="btnSubmit" type="submit" onclick="ClickUpdate()">Update</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ----------------------- Quan ly don hang ----------------------- -->
+    <div id="order-management" class="order-management">
+        <!-- table order -->
+        <table class="table_order" id="table_order">
+            <tr>
+                <th>ID</th>
+                <th class="imglists">Image</th>
+                <th>Name</th>
+                <th>Prince</th>
+                <th>Amount</th>
+                <th>Total</th>
+                <th>Status</th>
+                 <th>Action</th>
+            </tr>
+    </table>
+    </div>
+    
+    <section class="dashboard">
+        <div class="iconmenu">
+            <button class="iconListmenu" >
+                <i class="ti-layout-menu-v close" ></i>
+            </button>
+        </div>
+    </section> 
+</body>
+    <script src="jS/Login.js"></script>
+    <script src="jS/Cart.js"></script>
+    <script>
+        //----------------------- Ham xu ly thong ke -----------------------
+        function renderAccount(){
+        }
+        //----------------------- Ham xu ly quan ly tai khoan -----------------------
+        function renderAccountManagement(){
+            var list = JSON.parse(localStorage.getItem("ListUser"));
+            table = `<tr >
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Password</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>`;
+            for(i = 1; i < list.length; i++){
+                // console.log(list[i]);
+                table += `<tr class="acc-management">
+                    <td>${i}</td>
+                    <td>${list[i].email}</td>
+                    <td>${list[i].name}</td>
+                    <td>${list[i].pass}</td>
+                    <td id="lock">${list[i].status}
+                    </td>
+                    <td><button id="ischange" onclick="Change_acc_status('${list[i].name}')">Change</button>
+                    <button onclick="deleteAccount('${list[i].name}')">Delete</button></td>
+                </tr>`;
+            }
+            // localStorage.setItem()   
+            document.querySelector("#table-account-management").innerHTML = table;
+            // console.log(table);
+        }
+        // ----------------------- Ham xu ly quan ly san pham -----------------------
+        function renderProductManagement(){
+            var ProductManagement = JSON.parse(localStorage.getItem("listProduct"));
+            table = `<tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Product Type</th>
+                <th>Price</th>
+                <th>Type</th>
+                <th>Action</th>
+            </tr>`
+            for(i = 0; i < ProductManagement.length; i++){
+                // console.log(ProductManagement[i]);
+                table += `<tr class="pro-management">
+                    <td>${ProductManagement[i].id}</td>
+                    <td><img class="imglists" src="${ProductManagement[i].image}" alt=""></td>
+                    <td>${ProductManagement[i].name}</td>
+                    <td>$${ProductManagement[i].price}</td>
+                    <td>${ProductManagement[i].type}</td>
+                    <td><button class="btnEdit-product" onclick="ClickEdit(),change_btn_update(),updateProduct('${ProductManagement[i].id}')">Edit</button>
+                    <button class="btnDelete-product" onclick="deleteProduct('${ProductManagement[i].id}')">Delete</button></td>
+                </tr>`;
+            }
+                    
+        document.querySelector("#tabale-product-management").innerHTML = table;
+        // console.log(table);
+        }
+    
+    function Change_acc_status(name){
+        var list = JSON.parse(localStorage.getItem("ListUser"));
+        var lock;
+        for (let i = 0; i < list.length; i++) {
+            lock = list[i].status;
+            if (list[i].name==name) {
+                if (lock == 'Lock') {
+                    list[i]={
+                        email: list[i].email,
+                        name: list[i].name,
+                        pass: list[i].pass,
+                        status: 'Unlock'
+                    }
+                    localStorage.setItem("ListUser", JSON.stringify(list));
+                } else {
+                    list[i]={
+                        email: list[i].email,
+                        name: list[i].name,
+                        pass: list[i].pass,
+                        status: 'Lock'
+                    }
+                    localStorage.setItem("ListUser", JSON.stringify(list));
+                    
+                }
+                
+            }
+        }
+        renderAccountManagement();
+    }
+
+    function show_user_information(){
+        document.getElementById('content').style.display = "block";
+    }
+    function show_order_management(){
+        document.getElementById("order-management").style.display = "block";
+    }
+    function hide_order_management(){
+        document.getElementById("order-management").style.display = "none";
+    }
+    function hide_user_information(){
+        document.getElementById('content').style.display = "none";
+    }
+    function show_account_management(){
+        document.getElementById('account-management').style.display = "block";
+    }
+    function hide_account_management(){
+        document.getElementById('account-management').style.display = "none";
+    }
+    function show_product_management(){
+        document.getElementById('product-management').style.display = "block";
+    }
+    function hide_product_management(){
+        document.getElementById('product-management').style.display = "none";
+    }
+    function show_add_product(){
+        document.getElementById('editmenu').style.display = "block";
+    }
+    function hide_add_product(){
+        document.getElementById('editmenu').style.display = "none";
+    }
+    function change_btn_update() {
+        document.getElementById('btnSubmitAddNew').style.display = "none";
+        document.getElementById('btnSubmitUpdate').style.display = "block";
+    }
+    function change_btn_addnew() {
+        document.getElementById('btnSubmitUpdate').style.display = "none";
+        document.getElementById('btnSubmitAddNew').style.display = "block";
+    }
+
+    function ClickProduct(){
+        renderProductManagement();
+        show_product_management();
+        hide_account_management();
+        hide_user_information();
+        hide_add_product();
+        hide_order_management();
+    }
+    function ClickAccountUser(){
+        hide_user_information();
+        renderAccountManagement();
+        show_account_management();
+        hide_product_management();
+        hide_add_product();
+        hide_order_management();
+    }
+    function ClickUserInfo(){
+        renderAccount();
+        show_user_information();
+        hide_account_management();
+        hide_product_management();
+        hide_add_product();
+        hide_order_management();
+    }
+    function ClickAddNew(){
+        hide_add_product();
+        submitAddProduct();
+    }
+    function ClickUpdate(){
+        hide_add_product();
+        show_product_management();
+        changeProduct();
+    }
+    function ClickEdit(){
+        show_add_product();
+        hide_product_management();
+    }
+    function ClickOrder(){
+        hide_account_management();
+        hide_product_management();
+        hide_add_product();
+        renderorder();
+        hide_user_information();
+        show_order_management();
+    }
+    
+    // ------------------------ List Menu ------------------------
+    const Listmenu = document.querySelector(".iconListmenu");
+    const modeToggle = document.querySelector("nav");
+
+    Listmenu.addEventListener("click", () =>{
+        modeToggle.classList.toggle("close");
+    });
+
+    //------------------------ Delete Account ------------------------
+    function deleteAccount(name){
+        var list = JSON.parse(localStorage.getItem("ListUser"));
+            for (let i = 0; i<list.length; i++) {
+                if(list[i].name == name ) {
+                    if (confirm("Are you delete?")) {
+                        list.splice(i, 1);
+                    }
+                } 
+            }
+        localStorage.setItem("ListUser", JSON.stringify(list));
+        renderAccountManagement();
+    }
+    //------------------------ Delete ProductProduct ------------------------ 
+    
+    function deleteProduct(id){
+        var ProductManagement = JSON.parse(localStorage.getItem("listProduct"));
+            for (let i = 0; i< ProductManagement.length; i++) {
+                if(ProductManagement[i].id == id ) {
+                    if (confirm("Are you delete?")) {
+                        ProductManagement.splice(i, 1);
+                    }
+                } 
+            }
+        localStorage.setItem("listProduct", JSON.stringify(ProductManagement));
+        renderProductManagement();
+    }
+    function updateProduct(id) {
+        var ProductManagement = JSON.parse(localStorage.getItem("listProduct"));
+        for (let i = 0; i < ProductManagement.length; i++) {
+            if (ProductManagement[i].id == id) {
+                document.getElementById("index").value = ProductManagement[i].id;
+                document.getElementById("imgshow").src = ProductManagement[i].image;
+                document.getElementById("addProduct").value =  ProductManagement[i].name;
+                document.getElementById("dataPrice").value =  ProductManagement[i].price;
+                document.getElementById("chooseType").value = ProductManagement[i].type;
+            }   
+        }
+    }
+    function changeProduct() {
+        var ProductManagement = JSON.parse(localStorage.getItem("listProduct"));
+         let index = document.getElementById("index").value;
+            ProductManagement[index - 1]={
+            id: document.getElementById("index").value, 
+            image: document.getElementById("imgshow").src ,
+            name:document.getElementById("addProduct").value ,
+            price:document.getElementById("dataPrice").value ,
+            type: document.getElementById("chooseType").value
+            };
+            localStorage.setItem("listProduct", JSON.stringify(ProductManagement));
+            renderProductManagement();
+    }
+
+    const img_input = document.querySelector("#img_input");
+    var upload_image = "";
+    img_input.addEventListener("change", function() {
+        console.log(img_input.value);
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+            localStorage.setItem("chooseimage", reader.result);
+            upload_image = reader.result;
+        });
+        reader.readAsDataURL(this.files[0]);
+    });
+
+    function checkAddProduct(){
+        var ProductManagement = JSON.parse(localStorage.getItem("listProduct"));
+        let isaddProduct = document.getElementById("addProduct").value;
+        console.log(isaddProduct);
+        for (let i = 0; i < ProductManagement.length; i++) {
+            if (ProductManagement[i].name == isaddProduct) {
+                alert("Tên sản phẩm đã tồn tại !");
+                return true;
+            }
+        }
+    }
+
+     function SaveAddProduct() {
+        var ProductManagement = JSON.parse(localStorage.getItem("listProduct"));
+        for (let i = 0; i < ProductManagement.length; i++) {
+            var list = [{
+                id: ProductManagement[i].id + 1,
+                image: document.getElementById("imgshow").src = upload_image, 
+                name: document.getElementById("addProduct").value,
+                price: document.getElementById("dataPrice").value,
+                type: document.getElementById("chooseType").value
+            }];   
+        }
+        localStorage.setItem("listProduct", JSON.stringify(ProductManagement.concat(list)));
+        renderProductManagement(); 
+    }
+
+    function submitAddProduct(){
+        if(checkAddProduct() == true){
+            show_add_product();
+            hide_product_management();
+            cleartoAdd();
+        } else{
+            SaveAddProduct();
+            show_product_management();
+        }
+    }
+
+    function chooseFile(fileInput){
+        if(fileInput.files && fileInput.files[0]){
+            var reader = new FileReader;
+            reader.onload = function(e){
+                $('#imgshow').attr("src",e.target.result);
+            }
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+    function cleartoAdd() {
+        document.getElementById("imgshow").src = "", 
+        document.getElementById("addProduct").value = "",
+        document.getElementById("dataPrice").value = "",
+        document.getElementById("chooseType").value = "";
+    }
+
+    function renderorder(){
+        var OrderManagement = JSON.parse(localStorage.getItem("ListOrder"));
+        tableorder = `
+            <tr>
+                <th>ID</th>
+                <th class="imglists">Image</th>
+                <th>Name</th>
+                <th>Prince</th>
+                <th>Amount</th>
+                <th>Total</th>
+                <th>Time</th>
+                <th>Status</th>
+                 <th>Action</th>
+            </tr>`
+    for (let i = 0; i < OrderManagement.length; i++) {
+        tableorder += `
+            <tr>
+                <td>${OrderManagement[i].id}</td>
+                <td><img class="imglists" src="${OrderManagement[i].image}" alt=""></td>
+                <td>${OrderManagement[i].name}</td>
+                <td>${OrderManagement[i].price}</td>
+                <td>${OrderManagement[i].amount}</td>
+                <td>${OrderManagement[i].total}</td>
+                <td>${OrderManagement[i].time}</td>
+                <td id="changeodr" style="color: red"">${OrderManagement[i].status}</td>
+                <td>
+                    <button id="changeorder" onclick="Change_oder_status('${OrderManagement[i].id}')">Change</button>
+                    <button id="deleteorder" onclick="deleteorder('${OrderManagement[i].id}')">Delete</button>
+                    <button id="seeorder">See the bill</button>
+                </td>
+            </tr>`
+    }
+    document.querySelector("#table_order").innerHTML = tableorder;
+    }
+    
+    function deleteorder(id){
+        var OrderManagement = JSON.parse(localStorage.getItem("ListOrder"));
+        for (let i = 0; i<OrderManagement.length; i++) {
+                if(OrderManagement[i].id == id ) {
+                    if (confirm("Are you delete?")) {
+                        OrderManagement.splice(i, 1);
+                    }
+                } 
+            }
+        localStorage.setItem("ListOrder", JSON.stringify(OrderManagement));
+        renderorder();
+    }
+
+    function Change_oder_status(index){
+        var OrderManagement = JSON.parse(localStorage.getItem("ListOrder"));
+        var changeodr = document.getElementById("changeodr");
+        var status;
+        for (let i = 0; i < OrderManagement.length; i++) {
+            status = OrderManagement[i].status;
+            if (OrderManagement[i].id == index ) {
+                if (status == "No Process"){
+                    OrderManagement[i] = {
+                            id: OrderManagement[i].id,     
+                            image: OrderManagement[i].image,     
+                            name: OrderManagement[i].name,     
+                            price: OrderManagement[i].price,     
+                            amount: OrderManagement[i].amount,     
+                            total: OrderManagement[i].total,     
+                            time: OrderManagement[i].time,
+                            status: 'Processed'    
+                    }
+                    localStorage.setItem("ListOrder", JSON.stringify(OrderManagement));
+                } else {
+                    OrderManagement[i] = {
+                            id: OrderManagement[i].id,     
+                            image: OrderManagement[i].image,     
+                            name: OrderManagement[i].name,     
+                            price: OrderManagement[i].price,     
+                            amount: OrderManagement[i].amount,     
+                            total: OrderManagement[i].total,     
+                            time: OrderManagement[i].time,
+                            status: 'No Process'    
+                    }
+                    localStorage.setItem("ListOrder", JSON.stringify(OrderManagement));
+                }
+            }
+        }
+        renderorder();
+    }
+    </script>
+</html>

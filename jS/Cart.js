@@ -34,96 +34,112 @@ full.addEventListener("click", () => {
 // list product 
 var listProduct = [
     {
+        id: "01",
         image: "image/render1.jpeg",
         name: "Tranmisu",
         price: 300,
         type: "Cake"
     },
     {
+        id: "02",
         image: "image/render2.webp",
         name: "Cheese Cake",
         price: 260,
         type: "Cake"
     },
     {
+        id: "03",
         image: "image/render3.webp",
         name: "Milted Chocolate",
         price: 200,
         type: "Cake"
     },
     {
+        id: "04",
         image: "image/render4.jpeg",
         name: "Cake On White Tray",
         price: 109,
         type: "Cake"
     },
     {
+        id: "05",
         image: "image/render5.jpeg",
         name: "Blue Cupcakes",
         price: 110,
         type: "Cake"
     },
     {
+        id: "06",
         image: "image/render6.webp",
         name: "Chocolate CupcakeS",
         price: 106,
         type: "Cake"
     },
     {
+        id: "07",
         image: "image/render7.jpeg",
         name: "Brown Cake",
         price: 190,
         type: "Cake"
     },
     {
+        id: "08",
         image: "image/render8.jpeg",
         name: "Ice Cream Dish",
         price: 103,
         type: "Cake"
     },
     {
+        id: "09",
         image:  "image/render9.webp",
         name:   "dinosaur egg candy",
         price:  80,
         type: "Candy"
     },
     {
+        id: "10",
         image:  "image/render10.jpeg",
         name:   "fruits candy",
         price:  100,
         type: "Candy"
     },
     {
+        id: "11",
         image:  "image/render11.webp",
         name:   "Heart Shaped Candy",
         price:  90,
         type: "Candy"
     },
     {
+        id: "12",
         image:  "image/render12.webp",
         name:   "organge candy",
         price:  50,
         type: "Candy"
     },
     {
+        id: "13",
         image:  "image/render13.webp",
         name:   "Pumpkin candy",
         price:  46,
         type: "Candy"
     },
     {
+        id: "14",
         image:  "image/render14.webp",
         name:   "socola candy",
         price:  30,
         type: "Candy"
     },
     {
+        id: "15",
         image:  "image/render15.jpeg",
         name:   "apple candy",
         price:  20,
         type: "Candy"
     },
     {
+        id: "16",
         image:  "image/render16.webp",
         name:   "soft candy",
         price:  10,
@@ -476,10 +492,33 @@ function saveLocal(){
     })
     localStorage.setItem("InformUser", JSON.stringify(listProductCart));
 }
+
+ListOrder = [
+    {
+        id: "01",
+        image: "image/render1.jpeg",
+        name: "Tranmisu",
+        price: 300,
+        amount: 3,
+        total: 900,
+        time: "10/10/2022"
+    
+},{
+        id: "02",
+        image: "image/render13.webp",
+        name: "Tranmisu One",
+        price: 46,
+        amount: 3,
+        total: 138,
+        time: "20/10/2022 "   
+}
+];
+
 window.onload = function(){
     updateNumericalOrder();
     updateProductOfPageNum(1);
-    localStorage.setItem("listProduct", JSON.stringify(listProduct));
+    localStorage.setItem("ListOrder", JSON.stringify(ListOrder));
+    // localStorage.setItem("listProduct", JSON.stringify(listProduct));
     listBtn = document.querySelectorAll("h5");
     uploadCartOfUser();
 }

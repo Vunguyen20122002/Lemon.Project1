@@ -1,0 +1,447 @@
+body{
+    min-height: 100vh;
+    background-color: brown;
+    background-size: cover;
+}
+nav.close ~ .dashboard{
+    left: 0px;
+    width: calc(100% - 0px);
+}
+section{
+    display: unset;
+}
+.dashboard{
+    position: relative;
+    left: 250px;
+    min-height: 10vh;
+    width: calc(100% - 250px);
+    padding: 10px 14px;
+
+}
+.dashboard .iconListmenu {
+    position: fixed;
+    top: 0px;
+    left: 250px;
+    display: flex;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    background-color: white;
+}
+nav.close ~ .dashboard .iconListmenu{
+    left: 0px;
+}
+.iconListmenu:hover{
+    cursor: pointer;
+}
+.iconListmenu .ti-layout-menu-v{
+    font-size: 40px;
+}
+.menu-form{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: white;
+}
+nav{
+    display: block;
+}
+nav.close{
+    display: none;
+}
+.logo-name .logo-image {
+
+    min-width: 45px;
+}
+.Logo-name .logo-image img{
+    min-width: 40px;
+    object-fit: cover;
+    width: 100vw;
+}
+.menu-admin {
+    margin-top: 40px;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: translate(0,0);
+    transition: 0.5s;
+}
+.menu-admin .btn{
+    display: flex;
+    text-align: left;
+    justify-content: left;
+    height: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    margin: 10% 10%;
+    font-size: 1.2rem;
+    transform: translate(0,0);
+    transition: 0.2s;
+
+}
+.menu-admin .btn .ti-stats-up,
+.menu-admin .btn .ti-id-badge,
+.menu-admin .btn .ti-truck,
+.menu-admin .btn .ti-shopping-cart{
+    margin-right: 5px;
+}
+.menu-admin .btn:hover{
+    /* audimation */
+    transform: translate(0, -2px);
+    box-shadow: 0px 32px 25px 8px rgba(243, 208, 208, 0.2);
+    transition: all 0.3 linear;
+    cursor: pointer;
+    color: royalblue;
+}
+/* Thống kê  */
+.page-content{
+    top: 100px;
+    bottom: 100px;
+    position: relative;
+    justify-content: center;
+    align-content: center;
+    font-size: 1.5rem;
+    background-color: white;
+    padding-left: 50px;
+    padding-top: 50px;
+    padding-bottom: 100px;
+    left: 300px;
+    width: calc(100% - 350px);
+    border-radius: 100px;
+    transition: ease-in-out 0.5s;
+    display: none;
+}
+nav.close ~ .page-content{
+    left: 200px;
+    width: calc(100% - 400px);
+}
+.page-content h2 {
+    margin-bottom: 50px;
+}
+.page-content .thongke {
+    position: relative;
+    display: flex;
+    border: 1px solid;
+    margin-right: 50px;
+}
+.page-content .thongke .Amout {
+    position: relative;
+    float: left;
+}
+.page-content .thongke .Amout #amout {
+    display: flex;
+    background-color: aqua;
+    min-width: 400px;
+    min-height: 200px;
+    border-radius: 50px;
+}
+.page-content .thongke .Turnover {
+    position: relative;
+    margin-left: 21.7%;
+}
+.page-content .thongke .Turnover #turnover {
+    background-color: blue;
+    display: flex;
+    min-height: 200px;
+    min-width: 400px;
+    border-radius: 50px;
+}
+/* Css Quản lý tài khoản */
+.account-management{
+    top: 200px;
+    bottom: 100px;
+    position: relative;
+    justify-content: center;
+    align-content: center;
+    font-size: 1.5rem;
+    background-color: white;
+    padding-left: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    left: 300px;
+    width: calc(100% - 350px);
+    border-radius: 100px;
+    transition: ease-in-out 0.5s;
+    display: none;
+}
+nav.close ~ .account-management{
+    left: 100px;
+    width: calc(100% - 200px);
+}
+.account-management h2{
+    margin-bottom: 50px;
+}
+.account-management .table-account-management{
+    position: relative;
+    border-collapse: collapse;
+    height: 100%;
+    width: 95%;
+    text-align: center;
+}
+.account-management .table-account-management tr th{
+    width: 150px;
+    background-color: gray;
+}
+.account-management .table-account-management .acc-management td:nth-last-child(2){
+    color: green;
+}
+.account-management .table-account-management .acc-management td:nth-last-child(2) #lockuser{
+    color: red;
+    display: none;
+}
+.account-management .table-account-management tr:first-child th:first-child{    
+    width: 50px !important;
+}
+.account-management .table-account-management .acc-management td{
+    margin-top: 10px;
+    height: 50px;
+    text-align: center; 
+}
+.account-management .table-account-management .acc-management td button:hover{
+    cursor: pointer;
+}
+.account-management .table-account-management tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+/* CSS Quan ly san pham */
+.product-management{
+    top: 0px;
+    position: absolute;
+    justify-content: center;
+    align-content: center;
+    font-size: 1.5rem;
+    background-color: whitesmoke;
+    padding: 50px;
+    left: 300px;
+    width: calc(100% - 350px);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 50px;
+    transition: ease-in-out 0.5s;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: none;
+    
+}
+nav.close ~ .product-management{
+    left: 50px;
+    width: calc(100% - 100px);
+}
+.product-management .addpro{
+    width: fit-content;
+    padding-bottom: 10px;
+}
+.product-management .addpro button{
+    background-color: chocolate;
+    width: fit-content;
+    padding: 14px 36px;
+    font-size: 1.2rem;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 50px;
+    margin-left: 12px;
+}
+.product-management .addpro button:hover{
+    cursor: pointer;
+}
+.product-management .addpro .findproduct{
+    float: left;
+}
+.product-management .addpro .findproduct input{
+    height: 50px; 
+    border-radius: 50px;
+    min-width: 300px;
+    margin-left: 12px;
+    font-size: 1.3rem;
+    padding: 0px 10px;
+}
+.product-management .addpro .findproduct span{
+    float: left; 
+    height: 50px; 
+    margin-top: 10px;
+}
+.product-management .table-product-management{
+    border-collapse: collapse;
+    border-radius: 10px;
+    height: 100%;
+}
+.product-management .table-product-management tr th{
+    background-color: grey;
+    width: 500px;
+    height: 50px;
+}
+.product-management .table-product-management tr:first-child th:first-child{    
+    width: 200px;
+    text-align: center;
+}
+.product-management .table-product-management tr:first-child th:nth-child(2){
+    width: 150px !important;
+}
+.product-management .table-product-management .pro-management:hover{
+    border: 1px solid rgb(217, 214, 214);
+    background-color: aqua;
+}
+.product-management .table-product-management .pro-management:hover:nth-child(even){
+    border: 1px solid rgb(217, 214, 214);
+    background-color: aqua;
+}
+.product-management .table-product-management .pro-management:nth-child(even){
+    background-color: #e8e6e6;
+}
+.product-management .table-product-management .pro-management td{
+    border-bottom: 1px solid rgb(217, 214, 214);
+    text-align: center;
+}
+.product-management .table-product-management .pro-management td button:hover{
+    cursor: pointer;
+}
+.product-management .table-product-management .pro-management td{
+    border-bottom: 1px solid rgb(217, 214, 214);
+    text-align: center;
+}
+.product-management .table-product-management tr .imglists{
+    width: 20vh;
+    height: 20vh;
+}
+/* Add and Updata Product */
+.editmenu{
+    top: 100px;
+    position: absolute;
+    background-color: rgb(191, 191, 247);
+    left: 400px;
+    width: calc(100% - 550px);
+    min-height: 500px;
+    border: 1px solid black;
+    border-radius: 50px;
+    display: none;
+}
+.editmenu #ticlose{
+    position: relative;
+    display: flex;
+    float: right;
+    font-size: 1.5rem;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+.editmenu #ticlose:hover{
+    background-color: red;
+    cursor: pointer;
+}
+.editmenu input{
+    margin-top: 20px;
+}
+.editmenu .loadimage{
+    position: relative;
+    width: 50%;
+    height: 61vh;
+    width: 61vh;
+    float: left;
+    border: 2px solid black;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.editmenu .loadimage img{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.editmenu .editdata{
+    padding-left: 20px;
+    font-size: 1.2rem;
+    height: 250px;
+    width: 350px;
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+.editmenu .editsubmit{
+    float: right;
+}   
+.editmenu .editdata .editsubmit .btnSubmit{
+    padding: 5px;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.editmenu .editdata .editsubmit .btnSubmit:hover{
+    cursor: pointer;
+}
+.editmenu .editdata .selectType{
+    padding: 10px;
+    float: right;
+}
+.editmenu .editdata .selectType select{
+    font-size: 1.1rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+.editmenu .editdata .addData{
+    padding: 10px;
+    margin-top: 10px;
+}
+.editmenu .editdata .addData input{
+    width: 300px;
+    height: 30px;
+    margin-top: 10px;
+
+}
+.editmenu .editdata .addData{
+    padding: 10px;
+}
+.editmenu .editdata .addData input{
+    width: 300px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+/* CSS quan ly hoa don */
+.order-management{
+    top: 0px;
+    position: absolute;
+    justify-content: center;
+    align-content: center;
+    font-size: 1.5rem;
+    background-color: whitesmoke;
+    padding: 50px;
+    left: 300px;
+    width: calc(100% - 350px);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 50px;
+    transition: ease-in-out 0.5s;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: none;
+    
+}
+nav.close ~ .order-management{
+    left: 50px;
+    width: calc(100% - 100px);
+}
+.order-management .table_order{
+    border-collapse: collapse;
+    border-radius: 10px;
+    height: 100%;
+}
+.order-management .table_order tr{
+    border: 1px solid cornflowerblue;
+}
+.order-management .table_order tr th{
+    background-color: grey;
+    width: 500px;
+    height: 50px;
+}
+.order-management .table_order tr .imglists{
+    width: 20vh;
+    height: 20vh;
+}
+.order-management .table_order tr td{
+    text-align: center;
+}
+.order-management .table_order tr td button:hover{
+    cursor: pointer;
+}
